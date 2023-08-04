@@ -1,0 +1,49 @@
+ANSIBLE SETUP ADDING ANSIBLE USER
+=======================================================================
+
+*MASTER SERVER* 
+-------------------------------------------------------------------------
+sudo -i
+amazon-linux-extrass install ansible2 -y
+yum install python python-pip -y
+useradd ansible
+passwd ansible
+visudo ----> :100 ansible ALL=(ALL) NOPASSWD: ALL
+vi /etc/ssh/sshd_config -----> :63 PasswordAuthentication yes
+systemctl restart sshd
+su - ansible
+ssh-keygen
+ssh-copy-id ansible@52.198.185.124(slave are added)
+ssh ansible@52.198.185.124(connected or not)
+here we needto creat an inventroy so that we should be in root user
+->exit
+
+cd /etc/ansible/
+ll
+vim ansible-cfg 
+# tag remove for inventory  &   sudo_user
+vi /etc/ansible/hosts
+  there below ex:1
+ give like
+[dev]
+ips
+[ops]
+ips
+****WE NEED TO WRITE PLAYBOOK IN ANSIBLE USER ONLY***
+su - ansible
+------------------------------------------------------------------------
+*DEV & TEST*
+------------------------------------------------------------------------
+sudo -i
+useradd ansible
+passwd ansible
+visudo ----> :100 ansible ALL=(ALL) NOPASSWD: ALL
+vi /etc/ssh/sshd_config
+
+==========OVER====================================================================
+
+ANSIBLE SETUP WITHOUT ANSIBLE USER:
+===================================================================================
+
+
+
